@@ -1,0 +1,19 @@
+html,
+
+body {
+  height: 100%;
+  font-size: 1rem;
+}
+
+/* Made with this tool : https://cssgradient.io/ */
+.gradient {
+  background: rgb(64, 0, 123);
+  background: linear-gradient( 90deg, rgba(64, 0, 123, 1) 35%, rgba(48, 0, 255, 1) 100%);
+}
+
+.page-header {
+  margin-top: 4rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  font-size: 1.25rem;
+}
