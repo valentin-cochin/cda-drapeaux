@@ -21,7 +21,19 @@ body {
 /* Adapt the buttons for the background */
 .btn-outline-primary {
   color: #fff;
-  border-color: #fff; /*set the color you want here*/
+  border-color: #fff;
+}
+
+/* Adapt the buttons for the background */
+.btn-outline-warning {
+  color: #fff;
+  border-color: #fff;
+}
+
+/* Adapt the buttons for the background */
+.btn-outline-danger {
+  color: #fff;
+  border-color: #fff;
 }
 
 .icon {
