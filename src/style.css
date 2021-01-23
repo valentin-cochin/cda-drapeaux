@@ -24,6 +24,21 @@ body {
   border-color: #fff; /*set the color you want here*/
 }
 
+.icon {
+  color: #fff;
+  height: 4rem;
+  width: 4rem;
+  font-size: 1.75rem;
+  border-radius: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon:hover{
+  opacity: 0.6;
+}
+
 footer {
   color: #fff;
   font-size: 1rem;
@@ -31,7 +46,12 @@ footer {
   padding: 1rem;
 }
 
-a {
+footer a {
   color: #fff;
   text-decoration: none;
+}
+
+footer a:hover {
+  color: #fff;
+  text-decoration: underline;
 }
