@@ -1,0 +1,28 @@
+{
+    "flags": [
+        {
+            "country": "France",
+            "file": "fr.svg"
+        },
+        {
+            "country": "Belgium",
+            "file": "be.svg"
+        },
+        {
+            "country": "Germany",
+            "file": "de.svg"
+        },
+        {
+            "country": "Netherlands",
+            "file": "nl.svg"
+        },
+        {
+            "country": "Poland",
+            "file": "pl.svg"
+        },
+        {
+            "country": "Czech Republic",
+            "file": "cz.svg"
+        }
+    ]
+}
