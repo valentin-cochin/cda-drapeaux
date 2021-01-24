@@ -1,21 +1,29 @@
 "use strict"
 
 var jsonFlags;
+var currLevel;
+var maxLevel;
 
 $(document).ready(function () {
-    // afficher modal
-    $('#introModal').modal('show');
-
     // Charger fichier Json
     jsonFlags = loadJson("js/flags.json");
 
+    // initialisation
+    currLevel = 1;
+    maxLevel = Object.keys(jsonFlags).length;
+
+    // afficher modal
+    $('#introModal').modal('show');
+
     // charger svg
-    $('#flagCol').load('img/fr.svg');
-    // $($.parseXML(htmlText)).children('html');
-    // console.log(jQuery.parseHTML($.get("img/fr.svg").responseText));
-    // console.log(jQuery.parseHTML($.get("img/fr.svg").responseText));
-    
+    $('#flagCol').load('img/fr.svg', function() {
+        randColors(jsonFlags.flags[0].colors);
+    });
+
+    console.log("chips");
     // Randomiser couleurs
+
+    //
 
     // Afficher drapeau selon niveau
 
@@ -29,7 +37,7 @@ $(document).ready(function () {
 
     // passer au niveau suivant
 
-    // transitionvers drrapeau
+    // transition vers drrapeau
 
     // timer à zéro
 
@@ -40,7 +48,19 @@ $(document).ready(function () {
 
 const loadJson = (url) => {
     let json = $.getJSON({ 'url': url, 'async': false });
-    console.log(json.responseText);
     json = JSON.parse(json.responseText);
     return json;
+}
+
+const loadFlag = () => {
+    $("main svg path").each(function () { $(this).attr("fill", "#000") });
+}
+
+
+const randColors = (colors) => {
+    $("main svg path").each(function () {
+        let color = colors[Math.floor(colors.length * Math.random())];
+        console.log(color);
+        $(this).attr("fill", color);
+    });
 }

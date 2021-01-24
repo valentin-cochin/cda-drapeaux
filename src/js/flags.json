@@ -3,30 +3,60 @@
         {
             "level": 1,
             "countryName": "France",
+            "colors": [
+                "#fff",
+                "#00267f",
+                "#f31830"
+            ],
             "file": "fr.svg"
         },
         {
             "level": 2,
             "countryName": "Belgium",
+            "colors": [
+                "#000000",
+                "#ffd90c",
+                "#f31830"
+            ],
             "file": "be.svg"
         },
         {
             "level": 3,
             "countryName": "Germany",
+            "colors": [
+                "#ffce00",
+                "#000000",
+                "#d00"
+            ],
             "file": "de.svg"
         },
         {
             "level": 4,
             "countryName": "Netherlands",
+            "colors": [
+                "#21468b",
+                "#fff",
+                "#ae1c28"
+            ],
             "file": "nl.svg"
         },
         {
             "level": 5,
             "countryName": "Poland",
+            "colors": [
+                "#fff",
+                "#dc143c"
+            ],
             "file": "pl.svg"
         },
         {
+            "level": 6,
             "countryName": "Czech Republic",
+            "colors": [
+                "#ffffff",
+                "#d7141a",
+                "#11457e"
+            ],
             "file": "cz.svg"
         }
     ]
