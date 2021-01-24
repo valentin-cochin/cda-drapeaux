@@ -34,17 +34,6 @@
                             href="https://www.linkedin.com/in/valentin-cochin/" target="_blank"
                             rel="noopener noreferrer">Contact the Dev</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            Levels
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                    </li>
                 </ul>
             </div>
         </div>
@@ -87,12 +76,58 @@
             </path>
         </svg>
     </header>
+    <!-- Modal -->
+    <!-- <div class="modal fade" id="exampleModal">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">
+                            ×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    GeeksforGeeks
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                        Close</button>
+                    <button type="button" class="btn btn-primary">
+                        Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+    <!-- Modals -->
+    <!-- Introduction Modal -->
+    <div class="modal fade" id="introModal" tabindex="-1" aria-labelledby="introModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Welcome to the game of flags 🏴</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Please help us, our flags are messy. Put the right colours back by clicking on the different parts
+                    of the flags. The less you click, the more points you earn. Hit the start button and save the earth !!! 🌏
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" id="startBtn" data-bs-dismiss="modal">Start</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Flags appear here -->
     <main class="flags">
         <div class="container">
             <div class="row justify-content-center text-center">
                 <div class="col">
-                    <h4>France</h4>
-                    <h5>00:00</h5>
+                    <h4 id="country-name">France</h4>
+                    <h5 id="timer">00:00</h5>
                 </div>
             </div>
             <div class="row justify-content-center">

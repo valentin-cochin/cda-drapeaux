@@ -1,22 +1,27 @@
 {
     "flags": [
         {
+            "level": 1,
             "countryName": "France",
             "file": "fr.svg"
         },
         {
+            "level": 2,
             "countryName": "Belgium",
             "file": "be.svg"
         },
         {
+            "level": 3,
             "countryName": "Germany",
             "file": "de.svg"
         },
         {
+            "level": 4,
             "countryName": "Netherlands",
             "file": "nl.svg"
         },
         {
+            "level": 5,
             "countryName": "Poland",
             "file": "pl.svg"
         },
