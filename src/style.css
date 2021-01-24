@@ -1,12 +1,11 @@
-html,
-
-body {
+html, body {
   height: 100%;
   font-family: 'Montserrat', sans-serif;
   font-size: 1rem;
 }
 
 /* Made with this tool : https://cssgradient.io/ */
+
 .gradient {
   background: rgb(64, 0, 123);
   background: linear-gradient( 90deg, rgba(64, 0, 123, 1) 35%, rgba(48, 0, 255, 1) 100%);
@@ -14,8 +13,9 @@ body {
 
 .page-header {
   margin-top: 4rem;
+  margin-bottom: 0em;
   padding-top: 2rem;
-  font-size: 1.25rem;
+  ;
 }
 
 /* Adapt the buttons for the background */
@@ -31,6 +31,7 @@ body {
 }
 
 /* Adapt the buttons for the background */
+
 .btn-outline-danger {
   color: #fff;
   border-color: #fff;
@@ -47,7 +48,7 @@ body {
   justify-content: center;
 }
 
-.icon:hover{
+.icon:hover {
   opacity: 0.6;
 }
 
