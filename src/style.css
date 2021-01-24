@@ -13,9 +13,12 @@ html, body {
 
 .page-header {
   margin-top: 4rem;
-  margin-bottom: 0em;
   padding-top: 2rem;
-  ;
+}
+
+main path {
+  stroke: #646464;
+  stroke-width: 0.5rem;
 }
 
 /* Adapt the buttons for the background */
