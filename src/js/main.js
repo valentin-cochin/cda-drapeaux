@@ -7,8 +7,7 @@ $(document).ready(function () {
     $('#introModal').modal('show');
 
     // Charger fichier Json
-    jsonFlags = loadFlags("js/flags.json");
-    console.log(jsonFlags)
+    jsonFlags = loadJson("js/flags.json");
 
     // Randomiser couleurs
 
@@ -33,7 +32,7 @@ $(document).ready(function () {
     // Affichage du score
 });
 
-const loadFlags = (url) => {
+const loadJson = (url) => {
     let json = $.getJSON({ 'url': url, 'async': false });
     console.log(json.responseText);
     json = JSON.parse(json.responseText);
