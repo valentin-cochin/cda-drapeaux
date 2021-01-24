@@ -1,16 +1,14 @@
 "use strict"
 
-var introModal;
-
+var jsonFlags;
 
 $(document).ready(function () {
     // afficher modal
-    // introModal = new bootstrap.Modal(document.getElementById('exampleModal'));
-    // introModal.show();
     $('#introModal').modal('show');
 
-
     // Charger fichier Json
+    jsonFlags = loadFlags("js/flags.json");
+    console.log(jsonFlags)
 
     // Randomiser couleurs
 
@@ -26,7 +24,7 @@ $(document).ready(function () {
 
     // passer au niveau suivant
 
-    // transitionvers dtrapeau
+    // transitionvers drrapeau
 
     // timer à zéro
 
@@ -35,3 +33,9 @@ $(document).ready(function () {
     // Affichage du score
 });
 
+const loadFlags = (url) => {
+    let json = $.getJSON({ 'url': url, 'async': false });
+    console.log(json.responseText);
+    json = JSON.parse(json.responseText);
+    return json;
+}
