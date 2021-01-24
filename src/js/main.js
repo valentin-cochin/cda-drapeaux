@@ -9,6 +9,12 @@ $(document).ready(function () {
     // Charger fichier Json
     jsonFlags = loadJson("js/flags.json");
 
+    // charger svg
+    $('#flagCol').load('img/fr.svg');
+    // $($.parseXML(htmlText)).children('html');
+    // console.log(jQuery.parseHTML($.get("img/fr.svg").responseText));
+    // console.log(jQuery.parseHTML($.get("img/fr.svg").responseText));
+    
     // Randomiser couleurs
 
     // Afficher drapeau selon niveau
