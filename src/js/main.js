@@ -6,6 +6,7 @@ var flagIndex;
 
 var currLevel;
 var maxLevel;
+var nbClicks;
 var totalClicks;
 var score;
 var isJokerUsed;
@@ -60,6 +61,7 @@ $(document).ready(function () {
         if (!isJokerUsed) {
             $(this).toggleClass("disabled", true);
             if (score > 0) {
+                setRightColor();
                 score--;
                 $(".score").text(score);
             }
@@ -94,7 +96,7 @@ const playNextLevel = () => {
     isJokerUsed = false;
 
     // nb clicks
-    let nbClicks = 0;
+    nbClicks = 0;
     $("#clickText").text(nbClicks);
 
     // Country name
@@ -117,26 +119,9 @@ const playNextLevel = () => {
                 nbClicks++;
                 $("#clickText").text(nbClicks);
 
-                // check if flag found
-                let currColors = $('main svg path').map(function () {
-                    return $(this).attr("fill");
-                });
-
-                let flagFound = isFlagFound(jsonFlags.flags[flagIndex].colors, currColors);
-
-                if (flagFound) {
-                    stopTimer();
-
-                    // Display right number of clicks
-                    totalClicks += nbClicks;
-                    $(".totalClicks").text(totalClicks);
-                    calScore();
-
-                    // Enable joker
-                    $("#jokerBtn").toggleClass("disabled", false);
-
-                    // display modal
-                    $('#nextModal').modal('show');
+                // end level if flag found
+                if (isFlagFound()) {
+                    endLevel();
                 }
             });
         });
@@ -185,12 +170,34 @@ const getNextColor = (colors, currColor) => {
 }
 
 const setRightColor = () => {
-    let indexCurrColor = colors.indexOf(currColor);
-    let indexNextColor = (indexCurrColor === colors.length - 1) ? 0 : indexCurrColor + 1;
-    return colors[indexNextColor];
+    let rightColors = jsonFlags.flags[flagIndex].colors;
+    let rightColor = rightColors[Math.floor(rightColors.length * Math.random())];
+    let rightColorIndex = rightColors.indexOf(rightColor);
+
+    //$("main svg path")[rightColorIndex].attr("fill", rightColor);
+    // $("main svg path").get(rightColorIndex).attr("fill", rightColor);
+    let i = 0;
+    $('main svg path').each(function () {
+        if (i === rightColorIndex) {
+            $(this).attr("fill", rightColor);
+            $(this).off();
+        }
+        i++;
+    });
+
+    if (isFlagFound()) {
+        endLevel();
+    }
 }
 
-const isFlagFound = (rightColors, currColors) => {
+const isFlagFound = () => {
+    let rightColors = jsonFlags.flags[flagIndex].colors;
+
+    let currColors = $('main svg path').map(function () {
+        console.log($(this).attr("fill"));
+        return $(this).attr("fill");
+    });
+
     for (let index = 0; index < currColors.length; index++) {
         let rightColor = rightColors[index];
         let currColor = currColors[index];
@@ -200,6 +207,21 @@ const isFlagFound = (rightColors, currColors) => {
         }
     }
     return true;
+}
+
+const endLevel = () => {
+    stopTimer();
+
+    // Display right number of clicks
+    totalClicks += nbClicks;
+    $(".totalClicks").text(totalClicks);
+    calScore();
+
+    // Enable joker
+    $("#jokerBtn").toggleClass("disabled", false);
+
+    // display modal
+    $('#nextModal').modal('show');
 }
 
 const calScore = () => {
