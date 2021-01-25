@@ -1,11 +1,15 @@
 "use strict"
 
+
 var jsonFlags;
 var flagIndex;
+
 var currLevel;
 var maxLevel;
-var nbClicks;
+var totalClicks;
+var score;
 
+// Time variables
 var elapsedTime = 0;
 var elapsedTimeWhenClicked = 0;
 var startTime;
@@ -18,7 +22,8 @@ $(document).ready(function () {
     // initialisation
     currLevel = 0;
     maxLevel = Object.keys(jsonFlags.flags).length;
-    nbClicks = 0;
+    totalClicks = 0;
+    score = 0;
 
     // afficher modal
     $('#introModal').modal('show');
@@ -38,11 +43,18 @@ $(document).ready(function () {
         }
     });
 
+    $("#stopBtn").click(function () {
+        location.reload();
+    });
+
     // Modal dernier niveau
     $("#againBtn").click(function () {
         location.reload();
     });
 
+    // Evenment joker
+
+    // Evenment give up
 
     // ajouter score
 
@@ -51,8 +63,6 @@ $(document).ready(function () {
     // passer au niveau suivant
 
     // transition vers drrapeau
-
-    // timer à zéro
 
     // Si dernier drapeau
 
@@ -74,6 +84,10 @@ const playNextLevel = () => {
     startTimer();
 
     // Score
+
+    // nb clicks
+    let nbClicks = 0;
+    $("#clickText").text(nbClicks);
 
     // Country name
     $(countryName).text(jsonFlags.flags[flagIndex].countryName);
@@ -106,6 +120,11 @@ const playNextLevel = () => {
 
                 if (flagFound) {
                     stopTimer();
+
+                    // Display right number of clicks
+                    totalClicks += nbClicks;
+                    $(".totalClicks").text(totalClicks);
+                    calScore();
                     // display modal
                     $('#nextModal').modal('show');
                 }
@@ -166,4 +185,9 @@ const isFlagFound = (rightColors, currColors) => {
         }
     }
     return true;
+}
+
+const calScore = () => {
+    score++;
+    $(".score").text(score);
 }
