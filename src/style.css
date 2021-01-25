@@ -25,6 +25,11 @@ main path {
   stroke-width: 0.6rem;
 }
 
+.btn-outline-warning.disabled {
+  color: white;
+  background-color: #646464;
+}
+
 /* Adapt the buttons for the background */
 .btn-outline-primary {
   color: #fff;

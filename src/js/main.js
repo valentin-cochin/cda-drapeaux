@@ -8,6 +8,7 @@ var currLevel;
 var maxLevel;
 var totalClicks;
 var score;
+var isJokerUsed;
 
 // Time variables
 var elapsedTime = 0;
@@ -24,6 +25,7 @@ $(document).ready(function () {
     maxLevel = Object.keys(jsonFlags.flags).length;
     totalClicks = 0;
     score = 0;
+    isJokerUsed = false;
 
     // afficher modal
     $('#introModal').modal('show');
@@ -53,6 +55,16 @@ $(document).ready(function () {
     });
 
     // Evenment joker
+    $("#jokerBtn").click(function () {
+        if (!isJokerUsed) {
+            $(this).toggleClass("disabled", true);
+            if (score > 0) {
+                score--;
+                $(".score").text(score);
+            }
+        }
+        isJokerUsed = true;
+    });
 
     // Evenment give up
     $("#giveUpbtn").click(function () {
@@ -60,18 +72,6 @@ $(document).ready(function () {
         $(".score").text(score);
         $('#nextModal').modal('show');
     });
-
-    // ajouter score
-
-    // afficher modal
-
-    // passer au niveau suivant
-
-    // transition vers drrapeau
-
-    // Si dernier drapeau
-
-    // Affichage du score
 });
 
 const loadJson = (url) => {
@@ -88,7 +88,8 @@ const playNextLevel = () => {
     // Start timer
     startTimer();
 
-    // Score
+    // joker
+    isJokerUsed = false;
 
     // nb clicks
     let nbClicks = 0;
@@ -118,10 +119,8 @@ const playNextLevel = () => {
                 let currColors = $('main svg path').map(function () {
                     return $(this).attr("fill");
                 });
-                console.log(currColors);
 
                 let flagFound = isFlagFound(jsonFlags.flags[flagIndex].colors, currColors);
-                console.log(flagFound);
 
                 if (flagFound) {
                     stopTimer();
@@ -130,6 +129,10 @@ const playNextLevel = () => {
                     totalClicks += nbClicks;
                     $(".totalClicks").text(totalClicks);
                     calScore();
+
+                    // Enable joker
+                    $(this).toggleClass("disabled", false);
+
                     // display modal
                     $('#nextModal').modal('show');
                 }
@@ -141,7 +144,6 @@ const playNextLevel = () => {
 // TODO : sélectionner chrono
 const startTimer = () => {
     startTime = new Date();
-    console.log(startTime);
     timer = setInterval(function () {
         var diff = parseInt((new Date().getTime() - startTime.getTime()) / 1000) + elapsedTimeWhenClicked;
 
