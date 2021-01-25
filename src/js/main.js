@@ -17,11 +17,8 @@ $(document).ready(function () {
     // afficher modal
     $('#introModal').modal('show');
 
-    // lancer jeu
+    // lancer premier niveau
     playNextLevel();
-
-
-    // Afficher drapeau selon niveau
 
     // Lancer timer quand cliqué
 
@@ -60,17 +57,22 @@ const playNextLevel = () => {
         $("main svg path").each(function () {
             $(this).click(function () {
                 // changement couleur
-                let currColor =   $(this).attr("fill");
+                let currColor = $(this).attr("fill");
                 let nextColor = getNextColor(jsonFlags.flags[0].colors, currColor);
                 $(this).attr("fill", nextColor);
 
                 // Update number of clicks
                 nbClicks++;
                 $("#clickText").text(nbClicks);
+
+                // check if flag found
+                let currColors = $('main svg path').map(function () {
+                    return $(this).attr("fill");
+                  });
+                let flagFound =  isFlagFound(jsonFlags.flags[0].colors, currColors);
+                console.log(flagFound);
             });
         });
-
-        //console.log(getNextColor(jsonFlags.flags[0].colors, "#f31830"));
     });
 }
 
@@ -90,4 +92,16 @@ const getNextColor = (colors, currColor) => {
     let indexCurrColor = colors.indexOf(currColor);
     let indexNextColor = (indexCurrColor === colors.length - 1) ? 0 : indexCurrColor + 1;
     return colors[indexNextColor];
+}
+
+const isFlagFound = (rightColors, currColors) => {
+    for (let index = 0; index < currColors.length; index++) {
+        let rightColor = rightColors[index];
+        let currColor = currColors[index];
+
+        if (rightColor !== currColor) {
+            return false;
+        }
+    }
+    return true;
 }
