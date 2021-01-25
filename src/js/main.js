@@ -54,14 +54,18 @@ const playNextLevel = () => {
         // Randomiser couleurs
         randColors(jsonFlags.flags[0].colors);
 
+        // ajouter evenement à chaque path du svg
         $("main svg path").each(function () {
-            $(this).click(function() {
-                alert( "Handler for .click() called." );
-              });
+            $(this).click(function () {
+                // changement couleur
+                let currColor =   $(this).attr("fill");
+                let nextColor = getNextColor(jsonFlags.flags[0].colors, currColor);
+                $(this).attr("fill", nextColor);
+                //
+            });
         });
 
-        // ajouter evenement à chaque path du svg
-        console.log(getNextColor(jsonFlags.flags[0].colors, "#f31830"));
+        //console.log(getNextColor(jsonFlags.flags[0].colors, "#f31830"));
     });
 }
 
