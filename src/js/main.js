@@ -1,13 +1,19 @@
 "use strict"
 
 var jsonFlags;
+var flagIndex;
 var currLevel;
 var maxLevel;
 var nbClicks;
 
+var elapsedTime = 0;
+var elapsedTimeWhenClicked =0;
+var startTime;
+
 $(document).ready(function () {
     // Charger fichier Json
     jsonFlags = loadJson("js/flags.json");
+    flagIndex = 0;
 
     // initialisation
     currLevel = 0;
@@ -17,8 +23,11 @@ $(document).ready(function () {
     // afficher modal
     $('#introModal').modal('show');
 
+    $("#startBtn").click(function () {
+        playNextLevel();
+    });
     // lancer premier niveau
-    playNextLevel();
+    
 
     // Lancer timer quand cliqué
 
@@ -46,19 +55,29 @@ const loadJson = (url) => {
 }
 
 const playNextLevel = () => {
-    currLevel++;
+    // Levels
+    currLevel = jsonFlags.flags[flagIndex].level;
     $("#levelText").text(currLevel + "/" + maxLevel); // Write level
 
+    // Start timer
+    startTimer();
+
+    // Score
+
+    // Country name
+    $(countryName).text(jsonFlags.flags[flagIndex].countryName);
+
+    // Display flag
     $('#flagCol').load('img/fr.svg', function () {
-        // Randomiser couleurs
-        randColors(jsonFlags.flags[0].colors);
+        // Randomize colors
+        randColors(jsonFlags.flags[flagIndex].colors);
 
         // ajouter evenement à chaque path du svg
         $("main svg path").each(function () {
             $(this).click(function () {
                 // changement couleur
                 let currColor = $(this).attr("fill");
-                let nextColor = getNextColor(jsonFlags.flags[0].colors, currColor);
+                let nextColor = getNextColor(jsonFlags.flags[flagIndex].colors, currColor);
                 $(this).attr("fill", nextColor);
 
                 // Update number of clicks
@@ -68,16 +87,48 @@ const playNextLevel = () => {
                 // check if flag found
                 let currColors = $('main svg path').map(function () {
                     return $(this).attr("fill");
-                  });
-                let flagFound =  isFlagFound(jsonFlags.flags[0].colors, currColors);
+                });
+                let flagFound = isFlagFound(jsonFlags.flags[0].colors, currColors);
                 console.log(flagFound);
+
+                if (flagFound) {
+                    flagIndex++;
+                    stopTimer();
+
+                    // display modal
+                }
             });
         });
     });
 }
 
-const loadFlag = () => {
-    $("main svg path").each(function () { $(this).attr("fill", "#000") });
+// TODO : sélectionner chrono
+const startTimer = () => {
+    startTime = new Date();
+    console.log(startTime);
+    timer = setInterval(function () {
+        var diff = parseInt((new Date().getTime() - startTime.getTime()) / 1000) + elapsedTimeWhenClicked;
+        console.log(diff);
+
+        var hours = parseInt(diff / 3600);
+        diff = diff % 3600;
+
+        var minutes = parseInt(diff / 60);
+        diff = diff % 60;
+
+        $("#timer").text((minutes < 10 ? '0' : '') + minutes
+            + ':' + (diff < 10 ? '0' : '') + diff);
+
+        elapsedTime++;
+    }, 1000);
+}
+
+
+const stopTimer = () => {
+    clearInterval(timer);
+    elapsedTimeWhenClicked = 0;
+    elapsedTime = 0;
+    $("#timer").text('00:00');
 }
 
 
