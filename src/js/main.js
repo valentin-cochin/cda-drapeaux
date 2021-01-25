@@ -9,18 +9,14 @@ $(document).ready(function () {
     jsonFlags = loadJson("js/flags.json");
 
     // initialisation
-    currLevel = 1;
-    maxLevel = Object.keys(jsonFlags).length;
+    currLevel = 0;
+    maxLevel = Object.keys(jsonFlags.flags).length;
 
     // afficher modal
     $('#introModal').modal('show');
 
-    // charger svg
-    $('#flagCol').load('img/fr.svg', function() {
-        // Randomiser couleurs
-        randColors(jsonFlags.flags[0].colors);
-        console.log(getNextColor(jsonFlags.flags[0].colors,"#f31830"));
-    });
+    // lancer jeu
+    playNextLevel();
 
 
     // Afficher drapeau selon niveau
@@ -48,6 +44,25 @@ const loadJson = (url) => {
     let json = $.getJSON({ 'url': url, 'async': false });
     json = JSON.parse(json.responseText);
     return json;
+}
+
+const playNextLevel = () => {
+    currLevel++;
+    $("#levelText").text(currLevel + "/" + maxLevel); // Write level
+
+    $('#flagCol').load('img/fr.svg', function () {
+        // Randomiser couleurs
+        randColors(jsonFlags.flags[0].colors);
+
+        $("main svg path").each(function () {
+            $(this).click(function() {
+                alert( "Handler for .click() called." );
+              });
+        });
+
+        // ajouter evenement à chaque path du svg
+        console.log(getNextColor(jsonFlags.flags[0].colors, "#f31830"));
+    });
 }
 
 const loadFlag = () => {
