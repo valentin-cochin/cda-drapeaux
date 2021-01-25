@@ -7,7 +7,7 @@ var maxLevel;
 var nbClicks;
 
 var elapsedTime = 0;
-var elapsedTimeWhenClicked =0;
+var elapsedTimeWhenClicked = 0;
 var startTime;
 
 $(document).ready(function () {
@@ -23,7 +23,7 @@ $(document).ready(function () {
     // afficher modal
     $('#introModal').modal('show');
 
-    // lancer premier niveau
+    // Modal premier niveau
     $("#startBtn").click(function () {
         playNextLevel();
     });
@@ -31,8 +31,18 @@ $(document).ready(function () {
     // Modal pour niveau suivant
     $("#nextBtn").click(function () {
         flagIndex++;
-        playNextLevel();
+        if (flagIndex < maxLevel) {
+            playNextLevel();
+        } else {
+            $('#winModal').modal('show');
+        }
     });
+
+    // Modal dernier niveau
+    $("#againBtn").click(function () {
+        location.reload();
+    });
+
 
     // ajouter score
 
