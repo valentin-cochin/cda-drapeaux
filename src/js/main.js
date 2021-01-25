@@ -3,6 +3,7 @@
 var jsonFlags;
 var currLevel;
 var maxLevel;
+var nbClicks;
 
 $(document).ready(function () {
     // Charger fichier Json
@@ -11,6 +12,7 @@ $(document).ready(function () {
     // initialisation
     currLevel = 0;
     maxLevel = Object.keys(jsonFlags.flags).length;
+    nbClicks = 0;
 
     // afficher modal
     $('#introModal').modal('show');
@@ -61,7 +63,10 @@ const playNextLevel = () => {
                 let currColor =   $(this).attr("fill");
                 let nextColor = getNextColor(jsonFlags.flags[0].colors, currColor);
                 $(this).attr("fill", nextColor);
-                //
+
+                // Update number of clicks
+                nbClicks++;
+                $("#clickText").text(nbClicks);
             });
         });
 
