@@ -55,6 +55,11 @@ $(document).ready(function () {
     // Evenment joker
 
     // Evenment give up
+    $("#giveUpbtn").click(function () {
+        $(".totalClicks").text(totalClicks);
+        $(".score").text(score);
+        $('#nextModal').modal('show');
+    });
 
     // ajouter score
 
@@ -140,7 +145,7 @@ const startTimer = () => {
     timer = setInterval(function () {
         var diff = parseInt((new Date().getTime() - startTime.getTime()) / 1000) + elapsedTimeWhenClicked;
 
-        var hours = parseInt(diff / 3600);
+        // var hours = parseInt(diff / 3600);
         diff = diff % 3600;
 
         var minutes = parseInt(diff / 60);
