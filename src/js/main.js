@@ -25,7 +25,8 @@ $(document).ready(function () {
     maxLevel = Object.keys(jsonFlags.flags).length;
     totalClicks = 0;
     score = 0;
-    isJokerUsed = false;
+    isJokerUsed = true;
+    $("#jokerBtn").toggleClass("disabled", true);
 
     // afficher modal
     $('#introModal').modal('show');
@@ -70,6 +71,7 @@ $(document).ready(function () {
     $("#giveUpbtn").click(function () {
         $(".totalClicks").text(totalClicks);
         $(".score").text(score);
+        $("#jokerBtn").toggleClass("disabled", false);
         $('#nextModal').modal('show');
     });
 });
@@ -131,7 +133,7 @@ const playNextLevel = () => {
                     calScore();
 
                     // Enable joker
-                    $(this).toggleClass("disabled", false);
+                    $("#jokerBtn").toggleClass("disabled", false);
 
                     // display modal
                     $('#nextModal').modal('show');
@@ -177,6 +179,12 @@ const randColors = (colors) => {
 }
 
 const getNextColor = (colors, currColor) => {
+    let indexCurrColor = colors.indexOf(currColor);
+    let indexNextColor = (indexCurrColor === colors.length - 1) ? 0 : indexCurrColor + 1;
+    return colors[indexNextColor];
+}
+
+const setRightColor = () => {
     let indexCurrColor = colors.indexOf(currColor);
     let indexNextColor = (indexCurrColor === colors.length - 1) ? 0 : indexCurrColor + 1;
     return colors[indexNextColor];
