@@ -12,6 +12,7 @@ var score;
 var isJokerUsed;
 
 // Time variables
+var timer;
 var elapsedTime = 0;
 var elapsedTimeWhenClicked = 0;
 var startTime;
