@@ -17,13 +17,11 @@ $(document).ready(function () {
 
     // charger svg
     $('#flagCol').load('img/fr.svg', function() {
+        // Randomiser couleurs
         randColors(jsonFlags.flags[0].colors);
+        console.log(getNextColor(jsonFlags.flags[0].colors,"#f31830"));
     });
 
-    console.log("chips");
-    // Randomiser couleurs
-
-    //
 
     // Afficher drapeau selon niveau
 
@@ -60,7 +58,12 @@ const loadFlag = () => {
 const randColors = (colors) => {
     $("main svg path").each(function () {
         let color = colors[Math.floor(colors.length * Math.random())];
-        console.log(color);
         $(this).attr("fill", color);
     });
+}
+
+const getNextColor = (colors, currColor) => {
+    let indexCurrColor = colors.indexOf(currColor);
+    let indexNextColor = (indexCurrColor === colors.length - 1) ? 0 : indexCurrColor + 1;
+    return colors[indexNextColor];
 }
