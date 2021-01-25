@@ -26,8 +26,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Welcome to the game of flags 🏴</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h5 class="modal-title">Welcome to the game of flags 🏴</h5>
                 </div>
                 <div class="modal-body">
                     Please help us, our flags are messy. Put the right colours back by clicking on the different parts
@@ -41,6 +40,23 @@
         </div>
     </div>
     <!-- Next level modal -->
+    <div class="modal fade" id="nextModal" tabindex="-1" aria-labelledby="nextModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">What a success! 😃</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    You succeeded mighty one, go to next level
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" id="stopBtn" data-bs-dismiss="modal">Stop</button>
+                    <button type="button" class="btn btn-success" id="nextBtn" data-bs-dismiss="modal">Next Level</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- End game modal -->
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
@@ -124,9 +140,6 @@
         </svg>
         <div class="container">
             <div class="row justify-content-center text-center">
-                <div class="col col-md-2">
-                    <button type="button" class="btn btn-outline-primary btn-lg">Validate</button>
-                </div>
                 <div class="col col-md-2">
                     <button type="button" class="btn btn-outline-warning btn-lg">Joker</button>
                 </div>

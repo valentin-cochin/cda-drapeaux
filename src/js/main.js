@@ -23,15 +23,16 @@ $(document).ready(function () {
     // afficher modal
     $('#introModal').modal('show');
 
+    // lancer premier niveau
     $("#startBtn").click(function () {
         playNextLevel();
     });
-    // lancer premier niveau
-    
 
-    // Lancer timer quand cliqué
-
-    // arrêter timer
+    // Modal pour niveau suivant
+    $("#nextBtn").click(function () {
+        flagIndex++;
+        playNextLevel();
+    });
 
     // ajouter score
 
@@ -68,7 +69,7 @@ const playNextLevel = () => {
     $(countryName).text(jsonFlags.flags[flagIndex].countryName);
 
     // Display flag
-    $('#flagCol').load('img/fr.svg', function () {
+    $('#flagCol').load('img/' + jsonFlags.flags[flagIndex].file, function () {
         // Randomize colors
         randColors(jsonFlags.flags[flagIndex].colors);
 
@@ -88,14 +89,15 @@ const playNextLevel = () => {
                 let currColors = $('main svg path').map(function () {
                     return $(this).attr("fill");
                 });
-                let flagFound = isFlagFound(jsonFlags.flags[0].colors, currColors);
+                console.log(currColors);
+
+                let flagFound = isFlagFound(jsonFlags.flags[flagIndex].colors, currColors);
                 console.log(flagFound);
 
                 if (flagFound) {
-                    flagIndex++;
                     stopTimer();
-
                     // display modal
+                    $('#nextModal').modal('show');
                 }
             });
         });
@@ -108,7 +110,6 @@ const startTimer = () => {
     console.log(startTime);
     timer = setInterval(function () {
         var diff = parseInt((new Date().getTime() - startTime.getTime()) / 1000) + elapsedTimeWhenClicked;
-        console.log(diff);
 
         var hours = parseInt(diff / 3600);
         diff = diff % 3600;
